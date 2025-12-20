@@ -1,43 +1,41 @@
-# Pizza Delivery API
+# 🍕 Pizza Delivery API
 
-API backend para um sistema de delivery de pizzaria, desenvolvida como projeto de estudo durante o aprendizado de FastAPI e SQLAlchemy, seguindo um curso em vídeo no YouTube.
+API simples para gerenciamento de pedidos de uma pizzaria, desenvolvida com **FastAPI** como projeto de estudo.
 
-## Tecnologias Utilizadas
+---
+
+## 🚀 Tecnologias utilizadas
+
 - Python
 - FastAPI
-- SQLAlchemy
 - Uvicorn
-- SQLite
-- Git
+- SQLAlchemy
+- SQLite (banco de dados)
 
-## Objetivo do Projeto
-Aplicar conceitos de desenvolvimento backend com FastAPI, incluindo:
-- Criação de rotas REST
-- Organização de projeto
-- Modelagem de banco de dados com SQLAlchemy
-- Versionamento com Git
+---
 
-## Como Executar o Projeto
+## ▶️ Como executar o projeto
 
-### Ativar o ambiente virtual
+### 1️⃣ Criar e ativar o ambiente virtual
+
 ```bash
+python -m venv venv
 venv\Scripts\activate
-Instalar dependências
-bash
-Copiar código
-pip install fastapi uvicorn sqlalchemy
-Iniciar a aplicação
-bash
-Copiar código
-uvicorn main:app --reload
-A aplicação ficará disponível em:
 
-cpp
-Copiar código
-http://127.0.0.1:8000
-Estrutura do Projeto
-text
-Copiar código
+2️⃣ Instalar as dependências
+pip install fastapi uvicorn sqlalchemy
+
+3️⃣ Iniciar a aplicação
+uvicorn main:app --reload
+
+
+A aplicação ficará disponível em:
+👉 http://127.0.0.1:8000
+
+Documentação automática da API:
+👉 http://127.0.0.1:8000/docs
+
+📁 Estrutura do projeto
 pizza-delivery-api/
 ├── main.py
 ├── auth_routes.py
@@ -46,7 +44,17 @@ pizza-delivery-api/
 ├── venv/
 ├── .gitignore
 └── README.md
-Status do Projeto
-Em desenvolvimento — projeto de estudo.
 
-Copiar código
+📌 Status do projeto
+
+🚧 Em desenvolvimento — projeto de estudo.
+
+🧠 Observações
+
+Este projeto tem fins educacionais, com foco no aprendizado de:
+
+Criação de APIs REST
+
+Organização de rotas
+
+Boas práticas com FastAPI
