@@ -1,41 +1,43 @@
 # 🍕 Pizza Delivery API
 
-API simples para gerenciamento de pedidos de uma pizzaria, desenvolvida com **FastAPI** como projeto de estudo.
+A simple API for managing pizza orders, developed with **FastAPI** as a study project.
 
 ---
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Technologies
 
 - Python
 - FastAPI
 - Uvicorn
 - SQLAlchemy
-- SQLite (banco de dados)
+- SQLite
 
 ---
 
-## ▶️ Como executar o projeto
+## ▶️ How to run the project
 
-### 1️⃣ Criar e ativar o ambiente virtual
+### 1️⃣ Create and activate the virtual environment
 
 ```bash
 python -m venv venv
 venv\Scripts\activate
-
-2️⃣ Instalar as dependências
+2️⃣ Install dependencies
+bash
+Copiar código
 pip install fastapi uvicorn sqlalchemy
-
-3️⃣ Iniciar a aplicação
+3️⃣ Start the application
+bash
+Copiar código
 uvicorn main:app --reload
-
-
-A aplicação ficará disponível em:
+The application will be available at:
 👉 http://127.0.0.1:8000
 
-Documentação automática da API:
+API documentation (Swagger):
 👉 http://127.0.0.1:8000/docs
 
-📁 Estrutura do projeto
+📁 Project structure
+text
+Copiar código
 pizza-delivery-api/
 ├── main.py
 ├── auth_routes.py
@@ -44,17 +46,14 @@ pizza-delivery-api/
 ├── venv/
 ├── .gitignore
 └── README.md
+📌 Project status
+🚧 In development — study project.
 
-📌 Status do projeto
+🧠 Notes
+This project is intended for educational purposes, focusing on:
 
-🚧 Em desenvolvimento — projeto de estudo.
+REST API development
 
-🧠 Observações
+Route organization
 
-Este projeto tem fins educacionais, com foco no aprendizado de:
-
-Criação de APIs REST
-
-Organização de rotas
-
-Boas práticas com FastAPI
+FastAPI best practices
