@@ -4,6 +4,10 @@ A REST API for managing pizza orders, built as a personal project to practice ba
 
 This project focuses on understanding how a real backend API works, from project structure to authentication and database versioning.
 
+## API Overview
+
+![Swagger API](docs/swagger.png)
+
 ## 🚀 Tech Stack
 - Python
 - FastAPI
