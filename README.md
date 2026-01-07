@@ -58,7 +58,3 @@ You can log in using the authentication route and authorize directly in Swagger 
 
 🚧 Work in progress 🚧
 New features and improvements are being added continuously.
-
-💡 Author
-
-Eduardo
