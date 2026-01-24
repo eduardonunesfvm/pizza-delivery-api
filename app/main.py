@@ -12,7 +12,24 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
 
-app = FastAPI()
+app = FastAPI(
+    title="Pizza Delivery API",
+    version="1.0.0",
+    description="API REST para gerenciamento de pedidos de uma aplicação de delivery"
+)
+
+@app.get("/")
+def home():
+    return {
+        "message": "Bem-vindo à Pizza Delivery API 🍕",
+        "docs": "/docs",
+        "redoc": "/redoc",
+        "routes": {
+            "/auth": "Autenticação de usuários",
+            "/usuarios": "Gerenciamento de usuários",
+            "/pedidos": "Operações de pedidos"
+        }
+    }
 
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="auth/login-form")
@@ -22,6 +39,7 @@ from app.order_routes import order_router
 
 app.include_router(auth_router)
 app.include_router(order_router)
+
 
 # para rodar o codigo, execute uvicorn app.main --reload no terminal...
 
