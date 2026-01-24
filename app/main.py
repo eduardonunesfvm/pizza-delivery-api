@@ -10,7 +10,7 @@ load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
 
 app = FastAPI()
 
@@ -23,7 +23,7 @@ from app.order_routes import order_router
 app.include_router(auth_router)
 app.include_router(order_router)
 
-# para rodar o codigo, execute uvicorn main:app --reload no terminal
+# para rodar o codigo, execute uvicorn app.main --reload no terminal...
 
 #endpoint:
 #dominio.com/pedidos

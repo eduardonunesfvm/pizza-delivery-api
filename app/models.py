@@ -1,14 +1,6 @@
-from sqlalchemy import create_engine, Column, String, Integer, Boolean, Float, ForeignKey
-from sqlalchemy.orm import declarative_base
-from sqlalchemy_utils import ChoiceType
-
-# cria a conexao do banco
-db = create_engine("sqlite:///banco.db")
-
-# cria a base do banco
-Base = declarative_base()
-
-# criar as classes/tabelas do banco
+from sqlalchemy import Column, String, Integer, Boolean, Float, ForeignKey
+from sqlalchemy.orm import relationship
+from app.database import Base
 
 # Usuario
 class Usuario(Base):
@@ -35,19 +27,23 @@ class Pedido(Base):
     # STATUS_PEDIDOS = (
     #     ("PENDENTE", "PENDENTE"),
     #     ("CANCELADO", "CANCELADO"),
-    #     ("FINALIZADO", "FINALIZADO"),
+    #     ("FINALIZADO", "FINALIZADO")
     # )
 
     id = Column("id", Integer, primary_key=True, autoincrement=True)
     status = Column("status", String) #pendente, cancelado, finalizado
     usuario = Column("usuarios", ForeignKey("usuarios.id"))
     preco = Column("preco", Float)
-    #itens = Column("itens", Integer)
+    itens = relationship("ItemPedido", cascade="all, delete")
 
     def __init__(self, usuario, status="pendente", preco=0):
         self.usuario = usuario
         self.preco = preco
         self.status = status
+
+    def calcular_preço(self):
+        self.preco = sum(item.preco_unitario * item.quantidade for item in self.itens)
+            
 
 # ItensPedido
 class ItemPedido(Base):

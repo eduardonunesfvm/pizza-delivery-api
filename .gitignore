@@ -13,4 +13,5 @@ __pycache__/
 .idea/
 
 #db
+*.db__pycache__/
 *.db

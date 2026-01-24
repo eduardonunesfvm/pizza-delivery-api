@@ -1,18 +1,20 @@
 from fastapi import Depends, HTTPException
-from app.models import db
+from app.database import Base
 from sqlalchemy.orm import sessionmaker, Session
 from app.models import Usuario
 from jose import jwt, JWTError
 from app.main import SECRET_KEY, ALGORITHM, oauth2_schema
+from app.database import SessionLocal
 
 
+
+# função para abrir e fechar sessão
 def pegar_sessao():
+    db = SessionLocal()  # bind com engine já tá no SessionLocal
     try:
-        Session = sessionmaker(bind=db)
-        session = Session()
-        yield session
-    finally:  
-        session.close()
+        yield db
+    finally:
+        db.close()
 
 def verificar_token(token: str = Depends(oauth2_schema), session: Session = Depends(pegar_sessao)):
     try:
