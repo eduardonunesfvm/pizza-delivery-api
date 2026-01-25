@@ -4,6 +4,11 @@ A RESTful API for managing a pizza delivery system, built with **Python** and **
 
 This project was developed as part of a learning journey based on a course by **Hashtag Programação**, focused on understanding how APIs work in practice — routing, schemas, authentication, and overall backend structure. From the initial base, the project was expanded and refined to consolidate real-world backend concepts.
 
+
+<p align="center">
+  <img src="swagger.png" alt="Swagger">
+</p>
+
 ---
 
 ## 🚀 Features
