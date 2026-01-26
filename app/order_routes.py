@@ -18,7 +18,7 @@ async def pedidos():
 #cria o pedido
 @order_router.post("/pedido")
 async def criar_pedido(pedido_schema: PedidoSchema, session: Session = Depends(pegar_sessao), usuario: Usuario = Depends(verificar_token)):
-    if not usuario.admin and usuario.id != pedido_schema:
+    if not usuario.admin and usuario.id != pedido_schema.usuario:
         raise HTTPException(status_code=401, detail=" Você não tem autorização para acessar essa rota")
     else:
         novo_pedido = Pedido(usuario=pedido_schema.usuario)
