@@ -9,7 +9,7 @@ class Usuario(Base):
     id = Column("id", Integer, primary_key= True, autoincrement= True)
     nome = Column("nome", String)
     email = Column("email", String, nullable=False)
-    senha = Column("senha", String)
+    senha = Column("senha", String(128))
     ativo = Column("ativo", Boolean)
     admin = Column("admin", Boolean, default= False)
 
