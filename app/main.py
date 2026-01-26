@@ -15,19 +15,19 @@ ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 30))
 app = FastAPI(
     title="Pizza Delivery API",
     version="1.0.0",
-    description="API REST para gerenciamento de pedidos de uma aplicação de delivery"
+    description="API REST para gerenciamento de pedidos de uma aplicacao de delivery"
 )
 
 @app.get("/")
 def home():
     return {
-        "message": "Bem-vindo à Pizza Delivery API 🍕",
+        "message": "Bem-vindo a Pizza Delivery API ",
         "docs": "/docs",
         "redoc": "/redoc",
         "routes": {
-            "/auth": "Autenticação de usuários",
-            "/usuarios": "Gerenciamento de usuários",
-            "/pedidos": "Operações de pedidos"
+            "/auth": "Autenticacao de usuarios",
+            "/usuarios": "Gerenciamento de usuarios",
+            "/pedidos": "Operacoes de pedidos"
         }
     }
 

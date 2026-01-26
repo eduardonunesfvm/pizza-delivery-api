@@ -8,7 +8,7 @@ from app.database import SessionLocal
 
 
 
-# função para abrir e fechar sessão
+# função para abrir e fechar sessão.
 def pegar_sessao():
     db = SessionLocal()  # bind com engine já tá no SessionLocal
     try:
