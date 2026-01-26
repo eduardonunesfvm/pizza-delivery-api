@@ -5,6 +5,9 @@ from alembic import context
 import sys 
 import os
 
+from sqlalchemy import engine_from_config, pool
+from alembic import context
+
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
@@ -23,6 +26,10 @@ if config.config_file_name is not None:
 from app.database import Base
 import app.models
 
+DATABASE_URL = os.getenv("DATABASE_URL")
+if DATABASE_URL is None:
+    raise ValueError("DATABASE_URL not set in environment")
+config.set_main_option("sqlalchemy.url", DATABASE_URL)
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
