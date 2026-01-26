@@ -31,7 +31,7 @@ This project was developed as part of a learning journey based on a course by **
 - **FastAPI**
 - **Pydantic**
 - **Uvicorn**
-- **SQLite** (development database)
+- **PostgreSQL**
 - **JWT** for authentication
 
 ---
