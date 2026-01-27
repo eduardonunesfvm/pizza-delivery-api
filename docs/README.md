@@ -85,7 +85,6 @@ app/
 
 ## 🔮 Next Improvements
 
-- Production database (PostgreSQL)
 - Automated tests
 - Role-based access control
 - Pagination and filtering
