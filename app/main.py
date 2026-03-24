@@ -34,20 +34,6 @@ def home():
 bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_schema = OAuth2PasswordBearer(tokenUrl="auth/login-form")
 
-from app.auth_routes import auth_router
-from app.order_routes import order_router
+from app.auth.router import auth_router
 
 app.include_router(auth_router)
-app.include_router(order_router)
-
-
-# para rodar o codigo, execute uvicorn app.main --reload no terminal...
-
-#endpoint:
-#dominio.com/pedidos
-
-#rest APIs
-# Get -> leitura/pegar
-# Post -> enviar/criar
-# Put/Patch -> edição
-# Delete -> deletar

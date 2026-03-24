@@ -24,7 +24,7 @@ if config.config_file_name is not None:
 # add your model's MetaData object here
 # for 'autogenerate' support
 from app.database import Base
-import app.models
+import app.auth.models
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL is None:
