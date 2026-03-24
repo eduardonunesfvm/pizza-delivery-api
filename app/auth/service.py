@@ -41,7 +41,7 @@ def fazer_login_form(email: str, senha: str, session):
     usuario = autenticar_usuario(email, senha, session)
     if not usuario:
         raise HTTPException(status_code=400, detail="Usuário não encontrado ou credenciais erradas")
-
+    
     return {
         "access_token": criar_token(usuario.id),
         "token_type": "Bearer"

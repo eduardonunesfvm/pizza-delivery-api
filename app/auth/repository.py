@@ -11,3 +11,4 @@ def criar_usuario(nome: str, email: str, senha_hash: str, ativo: bool, admin: bo
     novo_usuario = Usuario(nome, email, senha_hash, ativo, admin)
     session.add(novo_usuario)
     session.commit()
+
