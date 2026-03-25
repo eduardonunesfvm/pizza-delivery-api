@@ -25,3 +25,4 @@ class ResponsePedidoSchema(BaseModel):
 
     class Config:
         from_attributes = True
+

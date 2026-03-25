@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from app.auth.models import Usuario
-from app.orders.repository import inserir_pedido, inserir_item_pedido, atualizar_preco_pedido
+from app.orders.repository import finalizar_pedido, inserir_pedido, inserir_item_pedido, atualizar_preco_pedido, deletar_pedido_repository, visualizar_pedido
 from app.orders.schemas import PedidoSchema, ItemPedidoSchema, ResponsePedidoSchema
 from sqlalchemy.orm import Session
 from app.orders.models import Pedido, ItemPedido
@@ -20,7 +20,37 @@ def adicionar_item_pedido(id_pedido: int, item_pedido_schema: ItemPedidoSchema, 
     
     item = inserir_item_pedido(id_pedido, item_pedido_schema, session)
     if not item:
-        raise HTTPException(status_code=400, detail="Pedido não existe")
+        raise HTTPException(status_code=404, detail="Pedido não encontrado")
     
     atualizar_preco_pedido(id_pedido, session)  # manda pro repository salvar
     return item
+
+def deletar_pedido(id_pedido: int, session: Session, usuario: Usuario):
+    if not usuario.admin:
+        raise HTTPException(status_code=401, detail="Você não tem autorização")
+    
+    pedido = deletar_pedido_repository(id_pedido, session)
+    if not pedido:
+        raise HTTPException(status_code=404, detail="Pedido não encontrado")
+    
+    return {"mensagem": f"Pedido número: {id_pedido} deletado com sucesso"}
+
+def finalizando_pedido(id_pedido: int, session: Session, usuario: Usuario):
+    if not usuario.admin:
+        raise HTTPException(status_code=401, detail="Você não tem autorização")
+    
+    pedido = finalizar_pedido(id_pedido, session)
+    if not pedido:
+        raise HTTPException(status_code=400, detail="Pedido não existe")
+    
+    return {"mensagem": f"Pedido número: {id_pedido} finalizado com sucesso"}
+
+def visualizando_pedido(id_pedido: int, session: Session, usuario: Usuario):
+    if not usuario.admin:
+        raise HTTPException(status_code=401, detail="Você não tem autorização")
+    
+    pedido_view = visualizar_pedido(id_pedido, session)
+    if not pedido_view:
+        raise HTTPException(status_code=404, detail="Pedido não encontrado")
+    return pedido_view
+    

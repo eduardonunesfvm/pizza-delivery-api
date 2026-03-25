@@ -22,5 +22,30 @@ def inserir_item_pedido(pedido_id: int, item_pedido_schema: ItemPedidoSchema, se
 
 def atualizar_preco_pedido(pedido_id: int, session: Session):
     pedido = session.query(Pedido).filter(Pedido.id == pedido_id).first()
-    pedido.calcular_preço()  # chama o método do model
+    pedido.calcular_preço()
     session.commit()
+
+def deletar_pedido_repository(id_pedido: int, session: Session):
+    pedido = session.query(Pedido).filter(Pedido.id == id_pedido).first()
+    if not pedido:
+        return None
+    session.delete(pedido)
+    session.commit()
+    return pedido
+
+def finalizar_pedido(id_pedido: int, session: Session):
+    pedido = session.query(Pedido).filter(Pedido.id == id_pedido).first()
+    if not pedido:
+        return None
+    pedido.status = "FINALIZADO"
+    session.commit()
+    return pedido
+
+def visualizar_pedido(id_pedido: int, session: Session):
+    pedido = session.query(Pedido).filter(Pedido.id == id_pedido).first()
+    if not pedido:
+        return None
+    return {
+         "quantidade_itens_pedido": len(pedido.itens),
+         "pedido": pedido
+   }
