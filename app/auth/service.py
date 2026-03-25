@@ -20,7 +20,7 @@ def autenticar_usuario(email: str, senha: str, session):
 
 def registrar_usuario(usuario_schema: UsuarioSchema, session):
     if buscar_usuario_por_email(usuario_schema.email, session):
-        raise HTTPException(status_code=400, detail="E-mail do usuário já cadastrado")
+        raise HTTPException(status_code=422, detail="E-mail do usuário já cadastrado")
 
     senha_hash = bcrypt_context.hash(usuario_schema.senha[:72])
     criar_usuario(usuario_schema.nome, usuario_schema.email, senha_hash, usuario_schema.ativo, usuario_schema.admin, session)
@@ -29,7 +29,7 @@ def registrar_usuario(usuario_schema: UsuarioSchema, session):
 def fazer_login(login_schema: LoginSchema, session):
     usuario = autenticar_usuario(login_schema.email, login_schema.senha, session)
     if not usuario:
-        raise HTTPException(status_code=400, detail="Usuário não encontrado ou credenciais erradas")
+        raise HTTPException(status_code=404, detail="Usuário não encontrado ou credenciais erradas")
 
     return {
         "access_token": criar_token(usuario.id),
