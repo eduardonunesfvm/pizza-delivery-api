@@ -75,7 +75,7 @@ pizza-delivery-api/
 ## 🌐 Live Demo
 
 🔗 **Production API (Render – free tier):**
-https://pizza-delivery-api-t8v2.onrender.com/
+https://pizza-delivery-api-t8v2.onrender.com/docs
 
 > ⚠️ Note: This service is deployed on Render's free tier. After some inactivity, the API may take a few seconds to wake up.
 
