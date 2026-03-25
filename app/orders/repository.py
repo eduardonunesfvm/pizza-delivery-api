@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.orders.models import Pedido, ItemPedido
 from app.auth.models import Usuario
-from app.orders.schemas import ItemPedidoSchema, PedidoSchema
+from app.orders.schemas import ItemPedidoSchema, PedidoSchema, ItemPedidoUpdateSchema
 from fastapi import HTTPException
 
 def inserir_pedido(usuario_id: int, session: Session):
@@ -49,3 +49,33 @@ def visualizar_pedido(id_pedido: int, session: Session):
          "quantidade_itens_pedido": len(pedido.itens),
          "pedido": pedido
    }
+
+def listar_todos_pedidos_usuario(usuario_id: int, session: Session):
+    pedidos_all = session.query(Pedido).filter(Pedido.usuario == usuario_id).all()
+    return {
+        "quantidade_pedidos": len(pedidos_all),
+        "pedidos": pedidos_all
+    }
+
+def remover_item_pedido(id_item_pedido: int, session: Session):
+    item_pedido = session.query(ItemPedido).filter(ItemPedido.id == id_item_pedido).first()
+    if not item_pedido:
+        return None
+    session.delete(item_pedido)
+    session.commit()    
+    return item_pedido
+
+def atualizar_item_pedido(id_item: int, item_schema: ItemPedidoUpdateSchema, session: Session):
+    item = session.query(ItemPedido).filter(ItemPedido.id == id_item).first()
+    if not item:
+        return None
+    if item_schema.quantidade:
+        item.quantidade = item_schema.quantidade
+    if item_schema.sabor:
+        item.sabor = item_schema.sabor
+    if item_schema.tamanho:
+        item.tamanho = item_schema.tamanho
+    if item_schema.preco_unitario:
+        item.preco_unitario = item_schema.preco_unitario
+    session.commit()
+    return item
