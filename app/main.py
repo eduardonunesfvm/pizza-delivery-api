@@ -24,7 +24,7 @@ app = FastAPI(
 origins = [
     "http://127.0.0.1:5500",
     "http://localhost:5500",
-    "https://seu-front.vercel.app"
+    "https://front-api-pizza-3o1c.vercel.app/"
 ]
 
 app.add_middleware(
