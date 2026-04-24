@@ -4,6 +4,9 @@ from passlib.context import CryptContext
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
@@ -16,6 +19,20 @@ app = FastAPI(
     title="Pizza Delivery API",
     version="1.0.0",
     description="API REST para gerenciamento de pedidos de uma aplicacao de delivery"
+)
+
+origins = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://seu-front.vercel.app"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
